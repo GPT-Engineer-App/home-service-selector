@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import mockDatabase from "../mockDatabase";
 import { Box, Button, Center, Container, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, Text, useToast, VStack } from "@chakra-ui/react";
 import { FaUser, FaLock, FaWrench, FaBolt, FaWater, FaRocket } from "react-icons/fa";
 
@@ -15,7 +16,28 @@ const Index = () => {
   const toast = useToast();
 
   const handleLogin = () => {
-    // This function would handle the login logic
+    // This function will now check against the mock database for login credentials
+    const emailInput = document.getElementById("email").value;
+    const passwordInput = document.getElementById("password").value;
+
+    if (mockDatabase.users["Admin"] && mockDatabase.users["Admin"].password === passwordInput) {
+      setIsLoggedIn(true);
+      toast({
+        title: "Login Success.",
+        description: "You've successfully logged in!",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    } else {
+      toast({
+        title: "Login Failed.",
+        description: "Invalid email or password.",
+        status: "error",
+        duration: 5000,
+        isClosable: true,
+      });
+    }
     setIsLoggedIn(true);
     toast({
       title: "Login Success.",
