@@ -2,7 +2,15 @@ import React, { useState } from "react";
 import { Box, Button, Center, Container, Flex, FormControl, FormLabel, Heading, Input, Link, Stack, Text, useToast, VStack } from "@chakra-ui/react";
 import { FaUser, FaLock, FaWrench, FaBolt, FaWater, FaRocket } from "react-icons/fa";
 
+import { IconButton } from "@chakra-ui/react";
+import { FaInfo } from "react-icons/fa";
+
 const Index = () => {
+  const navBar = (
+    <Flex justifyContent="space-between" alignItems="center" mb={4}>
+      <IconButton icon={<FaInfo />} aria-label="Information" colorScheme="blue" onClick={() => alert("Information will be provided here.")} />
+    </Flex>
+  );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const toast = useToast();
 
@@ -39,6 +47,7 @@ const Index = () => {
 
   return (
     <Container maxW="container.xl" p={4}>
+      {navBar}
       {!isLoggedIn ? (
         <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
           <Stack align={"center"}>
